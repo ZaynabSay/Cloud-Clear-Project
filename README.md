@@ -20,7 +20,7 @@ Uses free weather & map data from OpenWeatherMap & MapLibre
 
 ---
 ## Try Live
-**[Click Here to Open the App](https://github.com/ZaynabSay/Cloud-Clear-Project.git)**
+**[Click Here to Open the App](https://zaynabsay.github.io/Cloud-Clear-Project/)**
 
 ---
 
