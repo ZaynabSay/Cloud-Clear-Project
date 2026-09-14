@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud & Clear</title>
+    <script src="https://unpkg.com/maplibre-gl@4.4.0/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@4.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="starfield"></div>
+    <div id="globe"></div>
+    <div class="atmosphere-glow"></div>
+
+    <div class="panel layers-panel">
+        <div class="panel-head">
+            <span class="dot active"></span>
+            <h3>SATELLITE OVERLAYS</h3>
+            <span class="live-tag">LIVE</span>
+        </div>
+        <div class="toggles">
+            <label class="toggle-row">
+                <input type="checkbox" id="layer-clouds">
+                <span class="switch"></span>
+                <span class="label">☁️ Cloud Cover</span>
+            </label>
+            <label class="toggle-row">
+                <input type="checkbox" id="layer-rain">
+                <span class="switch"></span>
+                <span class="label">🌧️ Precipitation</span>
+            </label>
+            <label class="toggle-row">
+                <input type="checkbox" id="layer-temp">
+                <span class="switch"></span>
+                <span class="label">🌡️ Temperature</span>
+            </label>
+            <label class="toggle-row">
+                <input type="checkbox" id="layer-wind">
+                <span class="switch"></span>
+                <span class="label">💨 Wind Speed</span>
+            </label>
+            <label class="toggle-row">
+                <input type="checkbox" id="layer-pressure">
+                <span class="switch"></span>
+                <span class="label">🔵 Pressure</span>
+            </label>
+        </div>
+        <div class="legend">
+            <h4>LEGEND</h4>
+            <div class="legend-grid">
+                <div><span class="c rain"></span> Heavy Rain</div>
+                <div><span class="c mod"></span> Moderate</div>
+                <div><span class="c dry"></span> Clear / Dry</div>
+                <div><span class="c warm"></span> Warm</div>
+                <div><span class="c hot"></span> Hot</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel weather-panel">
+        <div class="panel-head">
+            <span class="dot active"></span>
+            <h3>LOCATION COMMAND</h3>
+            <span class="sync" id="syncStatus">✓ SYNCED</span>
+        </div>
+        <div class="search-box">
+            <input type="text" id="cityInput" placeholder="Search any city, state or country...">
+            <button id="searchBtn">SCAN</button>
+        </div>
+        <div id="loading" class="status hidden">
+            <div class="spinner"></div>
+            <p>Finding location...</p>
+        </div>
+        <div id="error" class="error hidden">
+            <span>⚠</span>
+            <span id="error-text">Couldn't find that place</span>
+        </div>
+        <div id="weatherCard" class="weather hidden">
+            <div class="loc-head">
+                <h2 id="cityName"></h2>
+                <div class="coords">
+                    <span id="coordsLat"></span>
+                    <span id="coordsLon"></span>
+                </div>
+            </div>
+            <div class="temp-block">
+                <span class="temp-val" id="temperature"></span>
+                <div class="cond">
+                    <span class="badge" id="description"></span>
+                    <span class="update">Updated: <span id="lastUpdate"></span></span>
+                </div>
+            </div>
+            <div class="metrics">
+                <div class="metric">
+                    <span class="icon">💧</span>
+                    <div>
+                        <span class="name">Humidity</span>
+                        <span class="val" id="humidity"></span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <span class="icon">💨</span>
+                    <div>
+                        <span class="name">Wind Speed</span>
+                        <span class="val" id="wind"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="forecast-section">
+                <h3 class="forecast-title">📅 3-DAY FORECAST</h3>
+                <div class="forecast-grid" id="forecastGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="status-bar">
+        <div>
+            <span class="lbl">DATABASE</span>
+            <span class="val ok">● ALL LOCATIONS</span>
+        </div>
+        <div>
+            <span class="lbl">IMAGERY</span>
+            <span class="val">SATELLITE</span>
+        </div>
+        <div>
+            <span class="lbl">UK TIME</span>
+            <span class="val clock" id="utcClock"></span>
+        </div>
+        <div>
+            <span class="lbl">REFRESH</span>
+            <span class="val">10 MIN</span>
+        </div>
+        <div>
+            <span class="lbl">SYSTEM</span>
+            <span class="val ok">● ONLINE</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
